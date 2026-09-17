@@ -501,8 +501,9 @@ section { padding: 90px 0; }
   font-size: 1.05rem;
 }
 .menu-item-desc { font-size: .9rem; color: #5c6357; margin: 6px 0 0; }
-.tag { font-size: .78rem; margin-left: 6px; }
+.tag { font-size: .78rem; margin-left: 6px; display: inline-flex; align-items: center; }
 .tag-veg { color: var(--green-mid); font-weight: 700; }
+.tag-icon-svg { width: 15px; height: 15px; color: var(--red); vertical-align: -2px; }
 
 /* ---------- Build your own ---------- */
 .byo-section { background: var(--green-dark); color: var(--cream); position: relative; overflow: hidden; }
@@ -526,8 +527,8 @@ section { padding: 90px 0; }
   border: 4px solid rgba(255,255,255,.08);
 }
 .byo-steps {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 24px;
 }
 .byo-step {
@@ -590,14 +591,12 @@ section { padding: 90px 0; }
   height: 64px;
   border-radius: 50%;
   background: rgba(212,169,79,.12);
-  border: 1.5px solid rgba(212,169,79,.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background .2s, transform .2s;
+  border: 2px solid rgba(212,169,79,.5);
+  overflow: hidden;
+  transition: border-color .2s, transform .2s;
 }
-.pasta-icon-card:hover .pasta-icon-circle { background: rgba(212,169,79,.22); transform: translateY(-3px); }
-.pasta-icon { width: 38px; height: 38px; color: var(--gold); }
+.pasta-icon-card:hover .pasta-icon-circle { border-color: var(--gold); transform: translateY(-3px); }
+.pasta-icon-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
 .pasta-icon-label { font-size: .78rem; color: var(--cream-2); line-height: 1.2; }
 .byo-price-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .byo-stamp {
@@ -693,6 +692,7 @@ section { padding: 90px 0; }
 .location-map { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
 .location-map iframe { width: 100%; height: 100%; min-height: 400px; border: 0; }
 .contact-line { display: flex; align-items: center; gap: 10px; margin: 14px 0; font-size: 1.05rem; }
+.contact-icon { width: 20px; height: 20px; color: var(--red); flex-shrink: 0; }
 .contact-line strong { color: var(--green-dark); }
 
 /* ---------- Footer ---------- */
