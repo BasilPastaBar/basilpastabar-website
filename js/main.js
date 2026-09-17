@@ -93,6 +93,47 @@ function renderMenu() {
 
 const STEP_ICONS = ["🍝", "🥫", "🍗", "🥦", "🧀"];
 
+const PASTA_ICON_SVGS = {
+  penne: `<g fill="currentColor"><rect x="8" y="24" width="34" height="13" rx="6.5" transform="rotate(-28 25 30)"/><rect x="22" y="30" width="34" height="13" rx="6.5" transform="rotate(-28 39 36)"/></g>`,
+  spaghetti: `<g stroke="currentColor" stroke-width="3.5" fill="none" stroke-linecap="round"><path d="M16 10 C 14 22, 18 34, 16 54"/><path d="M26 8 C 24 22, 28 36, 26 56"/><path d="M36 8 C 34 22, 38 36, 36 56"/><path d="M46 10 C 44 22, 48 34, 46 54"/></g>`,
+  linguine: `<g stroke="currentColor" stroke-width="6" fill="none" stroke-linecap="round"><path d="M20 10 C 19 26, 21 38, 20 54"/><path d="M32 8 C 31 26, 33 38, 32 56"/><path d="M44 10 C 43 26, 45 38, 44 54"/></g>`,
+  fettuccine: `<g stroke="currentColor" stroke-width="10" fill="none" stroke-linecap="round"><path d="M22 10 C 20 26, 24 38, 22 54"/><path d="M42 10 C 40 26, 44 38, 42 54"/></g>`,
+  fusilli: `<g stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"><path d="M22 8 C 34 14, 10 20, 22 26 C 34 32, 10 38, 22 44 C 34 50, 10 56, 22 58"/><path d="M42 8 C 30 14, 54 20, 42 26 C 30 32, 54 38, 42 44 C 30 50, 54 56, 42 58"/></g>`,
+  ravioli: `<g><rect x="12" y="12" width="40" height="40" rx="8" fill="currentColor" opacity="0.18"/><rect x="12" y="12" width="40" height="40" rx="8" fill="none" stroke="currentColor" stroke-width="3.5" stroke-dasharray="5 4"/><circle cx="32" cy="32" r="6" fill="currentColor"/></g>`,
+  gnocchi: `<g><ellipse cx="22" cy="40" rx="13" ry="10" fill="currentColor" opacity="0.2" stroke="currentColor" stroke-width="3"/><ellipse cx="36" cy="30" rx="13" ry="10" fill="currentColor" opacity="0.2" stroke="currentColor" stroke-width="3"/><ellipse cx="44" cy="44" rx="13" ry="10" fill="currentColor" opacity="0.28" stroke="currentColor" stroke-width="3"/><path d="M38 42 l6 -6 M41 47 l6 -6 M44 51 l5 -5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></g>`,
+  farfalle: `<g fill="currentColor"><path d="M10 16 L28 32 L10 48 Z" opacity="0.9"/><path d="M54 16 L36 32 L54 48 Z" opacity="0.9"/><rect x="26" y="25" width="12" height="14" rx="4"/></g>`,
+  conchiglie: `<g><path d="M32 10 C 46 16, 52 34, 42 52 C 34 58, 24 58, 16 50 C 8 40, 14 20, 32 10 Z" fill="currentColor" opacity="0.22" stroke="currentColor" stroke-width="3"/><path d="M32 14 L30 52 M25 16 L20 48 M39 16 L44 48" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></g>`
+};
+
+const PASTA_NAME_TO_ICON = {
+  "Penne": "penne",
+  "Whole Wheat Penne": "penne",
+  "Gluten Free Penne": "penne",
+  "Linguine": "linguine",
+  "Ravioli": "ravioli",
+  "Gnocchi": "gnocchi",
+  "Farfalle": "farfalle",
+  "Conchiglie": "conchiglie",
+  "Spaghetti": "spaghetti",
+  "Fusilli": "fusilli",
+  "Fettuccine": "fettuccine"
+};
+
+function renderPastaGrid(options) {
+  return `<div class="pasta-icon-grid">${options.map(name => {
+    const key = PASTA_NAME_TO_ICON[name];
+    const svg = key ? PASTA_ICON_SVGS[key] : "";
+    return `
+      <div class="pasta-icon-card">
+        <div class="pasta-icon-circle">
+          <svg viewBox="0 0 64 64" class="pasta-icon">${svg}</svg>
+        </div>
+        <span class="pasta-icon-label">${name}</span>
+      </div>
+    `;
+  }).join("")}</div>`;
+}
+
 function renderBuildYourOwn() {
   const el = document.getElementById("byo-steps");
   if (!el) return;
@@ -104,15 +145,16 @@ function renderBuildYourOwn() {
 
   MENU_DATA.buildYourOwn.steps.forEach((step, i) => {
     const stepEl = document.createElement("div");
-    stepEl.className = "byo-step reveal";
+    stepEl.className = "byo-step reveal" + (step.visual ? " byo-step-wide" : "");
     stepEl.innerHTML = `
       <div class="byo-step-num">${STEP_ICONS[i] || step.step}</div>
       <div class="byo-step-body">
         <span class="byo-step-tag">Step ${step.step}</span>
         <h4>${step.title}</h4>
+        ${step.visual ? renderPastaGrid(step.options) : `
         <div class="byo-options">
           ${step.options.map(o => `<span class="byo-chip">${o}</span>`).join("")}
-        </div>
+        </div>`}
         ${step.note ? `<p class="byo-note">🌶️ ${step.note}</p>` : ""}
       </div>
     `;
