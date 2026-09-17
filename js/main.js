@@ -4,11 +4,44 @@ function money(n) {
   return "$" + n.toFixed(2);
 }
 
+function priceLabel(item) {
+  if (item.sizes) {
+    return item.sizes.map(s => `${s.label} ${money(s.price)}`).join(" · ");
+  }
+  return money(item.price);
+}
+
 function iconsFor(item) {
   let html = "";
   if (item.spicy) html += '<span class="tag tag-spicy" title="Spicy">🌶️</span>';
   if (item.veg) html += '<span class="tag tag-veg" title="Vegetarian">🌿 V</span>';
   return html;
+}
+
+function renderFanFavorites() {
+  const el = document.getElementById("signature-grid");
+  if (!el) return;
+
+  const featured = [];
+  MENU_DATA.categories.forEach(cat => {
+    cat.items.forEach(item => {
+      if (item.featured && item.image) featured.push(item);
+    });
+  });
+
+  featured.forEach(item => {
+    const card = document.createElement("a");
+    card.className = "dish-card reveal";
+    card.href = "#menu";
+    card.innerHTML = `
+      <div class="dish-card-img" style="background-image:url('${item.image}')"></div>
+      <div class="dish-card-body">
+        <h3>${item.name} ${iconsFor(item)}</h3>
+        <span class="dish-card-price">${priceLabel(item)}</span>
+      </div>
+    `;
+    el.appendChild(card);
+  });
 }
 
 function renderMenu() {
@@ -31,23 +64,46 @@ function renderMenu() {
     panel.className = "menu-panel" + (i === 0 ? " active" : "");
     panel.id = "panel-" + cat.id;
 
-    const list = document.createElement("div");
-    list.className = "menu-list";
+    const withPhoto = cat.items.filter(item => item.image);
+    const withoutPhoto = cat.items.filter(item => !item.image);
 
-    cat.items.forEach(item => {
-      const row = document.createElement("div");
-      row.className = "menu-item";
-      row.innerHTML = `
-        <div class="menu-item-head">
-          <h4>${item.name} ${iconsFor(item)}</h4>
-          <span class="menu-item-price">${money(item.price)}</span>
-        </div>
-        ${item.desc ? `<p class="menu-item-desc">${item.desc}</p>` : ""}
-      `;
-      list.appendChild(row);
-    });
+    if (withPhoto.length) {
+      const grid = document.createElement("div");
+      grid.className = "dish-grid dish-grid-menu";
+      withPhoto.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "dish-card reveal";
+        card.innerHTML = `
+          <div class="dish-card-img" style="background-image:url('${item.image}')"></div>
+          <div class="dish-card-body">
+            <h3>${item.name} ${iconsFor(item)}</h3>
+            <span class="dish-card-price">${priceLabel(item)}</span>
+          </div>
+        `;
+        card.title = item.desc || "";
+        grid.appendChild(card);
+      });
+      panel.appendChild(grid);
+    }
 
-    panel.appendChild(list);
+    if (withoutPhoto.length) {
+      const list = document.createElement("div");
+      list.className = "menu-list";
+      withoutPhoto.forEach(item => {
+        const row = document.createElement("div");
+        row.className = "menu-item";
+        row.innerHTML = `
+          <div class="menu-item-head">
+            <h4>${item.name} ${iconsFor(item)}</h4>
+            <span class="menu-item-price">${priceLabel(item)}</span>
+          </div>
+          ${item.desc ? `<p class="menu-item-desc">${item.desc}</p>` : ""}
+        `;
+        list.appendChild(row);
+      });
+      panel.appendChild(list);
+    }
+
     panelsEl.appendChild(panel);
   });
 
@@ -61,19 +117,29 @@ function renderMenu() {
   }
 }
 
+const STEP_ICONS = ["🍝", "🥫", "🍗", "🥦", "🧀"];
+
 function renderBuildYourOwn() {
   const el = document.getElementById("byo-steps");
   if (!el) return;
 
-  MENU_DATA.buildYourOwn.steps.forEach(step => {
+  const img = document.getElementById("byo-image");
+  if (img && MENU_DATA.buildYourOwn.image) {
+    img.style.backgroundImage = `url('${MENU_DATA.buildYourOwn.image}')`;
+  }
+
+  MENU_DATA.buildYourOwn.steps.forEach((step, i) => {
     const stepEl = document.createElement("div");
-    stepEl.className = "byo-step";
+    stepEl.className = "byo-step reveal";
     stepEl.innerHTML = `
-      <div class="byo-step-num">${step.step}</div>
+      <div class="byo-step-num">${STEP_ICONS[i] || step.step}</div>
       <div class="byo-step-body">
+        <span class="byo-step-tag">Step ${step.step}</span>
         <h4>${step.title}</h4>
-        <p class="byo-options">${step.options.join(" &nbsp;·&nbsp; ")}</p>
-        ${step.note ? `<p class="byo-note">${step.note}</p>` : ""}
+        <div class="byo-options">
+          ${step.options.map(o => `<span class="byo-chip">${o}</span>`).join("")}
+        </div>
+        ${step.note ? `<p class="byo-note">🌶️ ${step.note}</p>` : ""}
       </div>
     `;
     el.appendChild(stepEl);
@@ -81,20 +147,34 @@ function renderBuildYourOwn() {
 
   const priceEl = document.getElementById("byo-price");
   if (priceEl) {
-    priceEl.innerHTML = `Starting at <strong>${money(MENU_DATA.buildYourOwn.startingPrice)}</strong><br><span class="byo-pricenote">${MENU_DATA.buildYourOwn.priceNote}</span>`;
+    priceEl.innerHTML = `
+      <div class="byo-stamp">
+        <span class="byo-stamp-label">Start at</span>
+        <span class="byo-stamp-price">${money(MENU_DATA.buildYourOwn.startingPrice)}</span>
+      </div>
+      <p class="byo-pricenote">${MENU_DATA.buildYourOwn.priceNote}</p>
+    `;
   }
 }
+
+const DELIVERY_META = {
+  "Uber Eats": { icon: "🚗", cls: "delivery-ubereats" },
+  "SkipTheDishes": { icon: "🛵", cls: "delivery-skip" },
+  "DoorDash": { icon: "🚪", cls: "delivery-doordash" },
+  "Food.ee (Teams & Groups)": { icon: "👥", cls: "delivery-foodee" }
+};
 
 function renderDelivery() {
   const el = document.getElementById("delivery-links");
   if (!el) return;
   MENU_DATA.deliveryPlatforms.forEach(p => {
+    const meta = DELIVERY_META[p.name] || { icon: "🍝", cls: "" };
     const a = document.createElement("a");
     a.href = p.url;
     a.target = "_blank";
     a.rel = "noopener";
-    a.className = "delivery-btn";
-    a.textContent = p.name;
+    a.className = "delivery-btn " + meta.cls;
+    a.innerHTML = `<span class="delivery-icon">${meta.icon}</span><span>${p.name}</span>`;
     el.appendChild(a);
   });
 }
@@ -143,12 +223,40 @@ function setupNav() {
   });
 }
 
+function setupScrollReveal() {
+  const items = document.querySelectorAll(".reveal");
+  if (!("IntersectionObserver" in window) || !items.length) {
+    items.forEach(i => i.classList.add("in-view"));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in-view");
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
+  items.forEach(i => io.observe(i));
+}
+
+function setupHeaderShrink() {
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+  window.addEventListener("scroll", () => {
+    header.classList.toggle("scrolled", window.scrollY > 40);
+  }, { passive: true });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   renderRestaurantInfo();
+  renderFanFavorites();
   renderMenu();
   renderBuildYourOwn();
   renderDelivery();
   setupNav();
+  setupHeaderShrink();
+  setupScrollReveal();
 
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
