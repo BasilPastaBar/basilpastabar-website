@@ -256,7 +256,29 @@ function setupHeaderShrink() {
   }, { passive: true });
 }
 
+function setupSplash() {
+  const splash = document.getElementById("splash");
+  if (!splash) return;
+
+  let seen = false;
+  try { seen = sessionStorage.getItem("basil_intro_seen") === "1"; } catch (e) {}
+
+  if (seen) {
+    splash.remove();
+    return;
+  }
+
+  document.body.style.overflow = "hidden";
+  window.setTimeout(() => {
+    splash.classList.add("splash-hide");
+    document.body.style.overflow = "";
+    try { sessionStorage.setItem("basil_intro_seen", "1"); } catch (e) {}
+    window.setTimeout(() => splash.remove(), 550);
+  }, 2200);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  setupSplash();
   renderRestaurantInfo();
   renderMenu();
   renderBuildYourOwn();
