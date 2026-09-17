@@ -18,32 +18,6 @@ function iconsFor(item) {
   return html;
 }
 
-function renderFanFavorites() {
-  const el = document.getElementById("signature-grid");
-  if (!el) return;
-
-  const featured = [];
-  MENU_DATA.categories.forEach(cat => {
-    cat.items.forEach(item => {
-      if (item.featured && item.image) featured.push(item);
-    });
-  });
-
-  featured.forEach(item => {
-    const card = document.createElement("a");
-    card.className = "dish-card reveal";
-    card.href = "#menu";
-    card.innerHTML = `
-      <div class="dish-card-img" style="background-image:url('${item.image}')"></div>
-      <div class="dish-card-body">
-        <h3>${item.name} ${iconsFor(item)}</h3>
-        <span class="dish-card-price">${priceLabel(item)}</span>
-      </div>
-    `;
-    el.appendChild(card);
-  });
-}
-
 function renderMenu() {
   const tabsEl = document.getElementById("menu-tabs");
   const panelsEl = document.getElementById("menu-panels");
@@ -157,24 +131,16 @@ function renderBuildYourOwn() {
   }
 }
 
-const DELIVERY_META = {
-  "Uber Eats": { icon: "🚗", cls: "delivery-ubereats" },
-  "SkipTheDishes": { icon: "🛵", cls: "delivery-skip" },
-  "DoorDash": { icon: "🚪", cls: "delivery-doordash" },
-  "Food.ee (Teams & Groups)": { icon: "👥", cls: "delivery-foodee" }
-};
-
 function renderDelivery() {
   const el = document.getElementById("delivery-links");
   if (!el) return;
   MENU_DATA.deliveryPlatforms.forEach(p => {
-    const meta = DELIVERY_META[p.name] || { icon: "🍝", cls: "" };
     const a = document.createElement("a");
     a.href = p.url;
     a.target = "_blank";
     a.rel = "noopener";
-    a.className = "delivery-btn " + meta.cls;
-    a.innerHTML = `<span class="delivery-icon">${meta.icon}</span><span>${p.name}</span>`;
+    a.className = "delivery-btn";
+    a.innerHTML = `<img class="delivery-logo" src="${p.logo}" alt="${p.name}">`;
     el.appendChild(a);
   });
 }
@@ -250,7 +216,6 @@ function setupHeaderShrink() {
 
 document.addEventListener("DOMContentLoaded", () => {
   renderRestaurantInfo();
-  renderFanFavorites();
   renderMenu();
   renderBuildYourOwn();
   renderDelivery();
