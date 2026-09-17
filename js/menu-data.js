@@ -125,6 +125,7 @@ const MENU_DATA = {
       {
         step: 1,
         title: "Pick your pasta",
+        visual: true,
         options: ["Penne", "Whole Wheat Penne", "Gluten Free Penne", "Linguine", "Ravioli", "Gnocchi", "Farfalle", "Conchiglie", "Spaghetti", "Fusilli", "Fettuccine"]
       },
       {
