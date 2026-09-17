@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Basil Pasta Bar | Build-Your-Own Pasta in Vancouver, BC</title>
+<meta name="description" content="Basil Pasta Bar — Vancouver's first and finest build-your-own pasta restaurant since 2010. 636 Davie Street, Vancouver, BC. Dine-in, takeout & delivery.">
+<link rel="icon" href="images/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-wrap">
+    <a href="#top" class="brand">
+      <img src="images/logo.jpg" alt="Basil Pasta Bar logo">
+    </a>
+    <nav class="nav-links" id="nav-links">
+      <a href="#top">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#build-your-own">Build Your Own</a>
+      <a href="#location">Location &amp; Hours</a>
+      <a href="#order-online" class="btn-order">Order Online</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="hero" id="top" style="--hero-img: url('images/storefront.jpg')">
+  <div class="container hero-content">
+    <span class="section-label" data-field="established">Est. Vancouver, BC 2010</span>
+    <h1>Vancouver's First &amp; Finest Build-Your-Own Pasta Restaurant</h1>
+    <p class="lead">Fresh pasta, real ingredients, made exactly the way you like it — no limits. Dine-in, takeout, or delivered straight to your door.</p>
+    <div class="hero-ctas">
+      <a href="#order-online" class="btn btn-primary">Order Delivery / Takeout</a>
+      <a href="#menu" class="btn btn-secondary">View Full Menu</a>
+    </div>
+  </div>
+</section>
+
+<div class="gallery-strip">
+  <img src="images/dish1.jpg" alt="Pasta and salad at Basil Pasta Bar" loading="lazy">
+  <img src="images/dish2.jpg" alt="Fresh pasta dish" loading="lazy">
+  <img src="images/dish3.jpg" alt="Fresh pasta dish" loading="lazy">
+  <img src="images/dish4.jpg" alt="Fresh pasta dish" loading="lazy">
+  <img src="images/dish5.jpg" alt="Fresh pasta dish" loading="lazy">
+  <img src="images/dish6.jpg" alt="Fresh pasta dish" loading="lazy">
+</div>
+
+<section class="menu-section" id="menu">
+  <div class="container">
+    <span class="section-label">House Specials &amp; More</span>
+    <h2 class="section-title">Our Menu</h2>
+    <p id="menu-note" class="menu-note"></p>
+    <div class="menu-tabs" id="menu-tabs"></div>
+    <div id="menu-panels"></div>
+  </div>
+</section>
+
+<section class="byo-section" id="build-your-own">
+  <div class="container">
+    <span class="section-label">No Limits</span>
+    <h2 class="section-title">Build Your Own Pasta</h2>
+    <p class="section-intro">Choose your favorite items and create your own dish. Follow the five steps below — it's your pasta, your rules.</p>
+    <div class="byo-steps" id="byo-steps"></div>
+    <div class="byo-price-badge" id="byo-price"></div>
+  </div>
+</section>
+
+<section class="order-section" id="order-online">
+  <div class="container">
+    <span class="section-label">Stuck Inside? Relax…</span>
+    <h2 class="section-title">Order Online</h2>
+    <p class="section-intro">We deliver daily, 11:30 AM to 10 PM. Pick your favorite delivery platform below.</p>
+    <div class="delivery-links" id="delivery-links"></div>
+  </div>
+</section>
+
+<section class="location-section" id="location">
+  <div class="container">
+    <span class="section-label">Vancouver, BC</span>
+    <h2 class="section-title">Location &amp; Hours</h2>
+    <div class="location-grid">
+      <div class="location-card">
+        <h3>Visit Us</h3>
+        <div class="contact-line">📍 <span data-field="address">636 Davie Street, Vancouver, BC</span></div>
+        <div class="contact-line">📞 <a href="tel:16045683106" data-field="phone">1 (604) 568-3106</a></div>
+        <h3 style="margin-top:28px;">Hours</h3>
+        <div id="hours-list"></div>
+      </div>
+      <div class="location-map">
+        <iframe
+          src="https://maps.google.com/maps?q=636%20Davie%20Street%2C%20Vancouver%2C%20BC&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          allowfullscreen loading="lazy" title="Basil Pasta Bar location map"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-social">
+      <a id="social-facebook" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+      <a id="social-twitter" target="_blank" rel="noopener" aria-label="Twitter">𝕏</a>
+      <a id="social-instagram" target="_blank" rel="noopener" aria-label="Instagram">◎</a>
+    </div>
+    <div>Basil Pasta Bar · 636 Davie Street, Vancouver, BC · <a href="tel:16045683106" data-field="phone">1 (604) 568-3106</a></div>
+    <div class="footer-fine">&copy; <span id="year"></span> Basil Pasta Bar. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="js/menu-data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
