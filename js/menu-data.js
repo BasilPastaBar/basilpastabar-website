@@ -152,10 +152,9 @@ const MENU_DATA = {
   },
 
   deliveryPlatforms: [
-    { name: "Uber Eats", url: "https://www.ubereats.com/ca/vancouver/food-delivery/basil-pasta-bar-davie-%26-seymour/eK3XxNn4SQKK74tO7Si1Ew" },
-    { name: "SkipTheDishes", url: "https://www.skipthedishes.com/basil-pasta-bar-davie-vancouver" },
-    { name: "DoorDash", url: "https://www.doordash.com/store/basil-pasta-bar-vancouver-30968/en-CA" },
-    { name: "Food.ee (Teams & Groups)", url: "https://www.food.ee/restaurants/vancouver/basil-pasta-bar/" }
+    { name: "Uber Eats", logo: "images/logos/ubereats.svg", url: "https://www.ubereats.com/ca/vancouver/food-delivery/basil-pasta-bar-davie-%26-seymour/eK3XxNn4SQKK74tO7Si1Ew" },
+    { name: "SkipTheDishes", logo: "images/logos/skipthedishes.svg", url: "https://www.skipthedishes.com/basil-pasta-bar-davie-vancouver" },
+    { name: "DoorDash", logo: "images/logos/doordash.svg", url: "https://www.doordash.com/store/basil-pasta-bar-vancouver-30968/en-CA" }
   ],
 
   restaurant: {
