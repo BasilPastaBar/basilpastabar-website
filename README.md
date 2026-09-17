@@ -18,9 +18,9 @@ one. Just ask Claude to make the change in `js/menu-data.js` and push it.
 
 ## One thing to double check
 
-On the old Wix site, "Classic Caesar" under Sides & Salads was missing a price
-entirely — I've set it to $13.95 (same as Pasta Salad) as a placeholder. Let me
-know the real price and I'll fix it.
+"Classic Caesar" under Sides & Salads has had no listed price on the Wix site
+or even the old 2014 print menu — it's set to $13.95 (same as Pasta Salad) as
+a placeholder. Let me know the real price and I'll fix it.
 
 ## Running it locally
 
@@ -66,9 +66,12 @@ becomes available (can take a few hours after DNS propagates).
 ## Structure
 
 ```
-index.html          One-page site: hero, menu, build-your-own, order online, location
-css/style.css        All styling
+index.html            One-page site: hero, menu, build-your-own, order online, location
+css/style.css         All styling
 js/menu-data.js       <-- Edit this file to change prices/menu items
 js/main.js            Renders the menu/hours/social links from menu-data.js
-images/               Logo + food photography (pulled from the original site)
+images/logo.jpg       Logo
+images/storefront.jpg Storefront photo
+images/dishes/        Per-dish photos from the 2017 professional photoshoot,
+                       used to power the visual menu cards
 ```
