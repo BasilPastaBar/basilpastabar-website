@@ -81,7 +81,8 @@ section { padding: 90px 0; }
   align-items: center;
   justify-content: space-between;
 }
-.brand img { height: 42px; background: var(--cream); border-radius: 8px; padding: 4px 10px; }
+.brand { display: flex; align-items: center; }
+.brand img { height: 68px; display: block; }
 .nav-links {
   display: flex;
   gap: 4px;
@@ -265,6 +266,36 @@ section { padding: 90px 0; }
   border-radius: 999px;
   font-size: .85rem;
   font-weight: 600;
+}
+
+/* ---------- Since 2010 banner ---------- */
+.since-banner {
+  background: var(--gold);
+  color: var(--green-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 18px 24px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.since-banner-year {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1;
+  border-right: 2px solid rgba(20,43,32,.3);
+  padding-right: 18px;
+}
+.since-banner-text {
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: .01em;
+}
+@media (max-width: 520px) {
+  .since-banner-year { border-right: none; padding-right: 0; font-size: 1.6rem; }
+  .since-banner { flex-direction: column; gap: 4px; padding: 14px; }
 }
 
 /* ---------- Signature dishes ---------- */
@@ -523,23 +554,17 @@ section { padding: 90px 0; }
 }
 .delivery-btn {
   background: var(--white);
-  padding: 18px 30px;
+  padding: 22px 36px;
   border-radius: var(--radius);
-  font-weight: 800;
-  color: var(--green-dark);
   box-shadow: var(--shadow);
-  transition: transform .15s;
+  transition: transform .15s, box-shadow .15s;
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 1.02rem;
+  justify-content: center;
+  min-width: 180px;
 }
-.delivery-icon { font-size: 1.3rem; }
-.delivery-btn:hover { transform: translateY(-4px) scale(1.02); }
-.delivery-ubereats { background: #06c167; color: #06210f; }
-.delivery-doordash { background: #eb1700; color: var(--white); }
-.delivery-skip { background: #ff8000; color: var(--white); }
-.delivery-foodee { background: var(--gold); color: var(--green-dark); }
+.delivery-btn:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 20px 40px rgba(0,0,0,.35); }
+.delivery-logo { height: 26px; width: auto; }
 
 /* ---------- Location ---------- */
 .location-section { background: var(--cream-2); }
