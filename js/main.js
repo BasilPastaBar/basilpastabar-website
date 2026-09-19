@@ -93,10 +93,9 @@ function renderMenu() {
   }
 }
 
-// Every build-your-own option mapped to a real photo in images/ingredients/.
-// Options with no match (e.g. "Double Meat") fall back to a plain label chip.
+// Every build-your-own option mapped to an illustration in images/ingredients/ (SVG).
 const INGREDIENT_ICON = {
-  "Penne": "penne", "Whole Wheat Penne": "penne", "Gluten Free Penne": "penne",
+  "Penne": "penne", "Whole Wheat Penne": "penne-ww", "Gluten Free Penne": "penne-gf",
   "Linguine": "linguine", "Ravioli": "ravioli", "Gnocchi": "gnocchi",
   "Farfalle": "farfalle", "Conchiglie": "conchiglie", "Spaghetti": "spaghetti",
   "Fusilli": "fusilli", "Fettuccine": "fettuccine",
@@ -107,7 +106,7 @@ const INGREDIENT_ICON = {
 
   "Bacon": "bacon", "Chorizo Sausage": "chorizo", "Chicken": "chicken",
   "Shrimp": "shrimp", "Anchovies": "anchovies", "Smoked Salmon": "smokedsalmon",
-  "Meatballs (3 pcs) +$1.95": "meatballs",
+  "Meatballs (3 pcs) +$1.95": "meatballs", "Double Meat +$1.95": "doublemeat",
 
   "Tomatoes": "tomatoes", "Carrots": "carrots", "Black Olives": "blackolives",
   "Corn": "corn", "Spinach": "spinach", "Zucchini": "zucchini", "Peas": "peas",
@@ -116,7 +115,7 @@ const INGREDIENT_ICON = {
   "Broccoli": "broccoli", "Capers": "capers",
 
   "Parmesan +$1.95": "parmesan", "Goat Cheese +$1.95": "goatcheese",
-  "Mozzarella +$1.95": "mozzarella", "Basil": "basil", "Parsley": "parsley",
+  "Mozzarella +$1.95": "mozzarella", "Double Cheese +$1.95": "doublecheese", "Basil": "basil", "Parsley": "parsley",
   "Oregano": "oregano"
 };
 
@@ -126,7 +125,7 @@ function renderIngredientGrid(options) {
     return `
       <div class="pasta-icon-card">
         <div class="pasta-icon-circle">
-          ${key ? `<img src="images/ingredients/${key}.jpg" alt="${name}" class="pasta-icon-photo">` : ""}
+          ${key ? `<img src="images/ingredients/${key}.svg" alt="${name}" class="pasta-icon-photo">` : ""}
         </div>
         <span class="pasta-icon-label">${name}</span>
       </div>
