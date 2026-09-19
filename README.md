@@ -74,4 +74,10 @@ images/logo.jpg       Logo
 images/storefront.jpg Storefront photo
 images/dishes/        Per-dish photos from the 2017 professional photoshoot,
                        used to power the visual menu cards
+images/ingredients/   Cartoon-style SVG icons for the Build Your Own section
+                       (one file per ingredient; see credits below)
 ```
+
+## Credits
+
+The Build Your Own ingredient icons are illustrated in-house in one consistent style. A few of them (carrot, corn, broccoli, garlic, pea pod, bacon, chicken, shrimp, fish, and the two "double" icons) are adapted from Google's [Noto Emoji](https://github.com/googlefonts/noto-emoji), licensed under [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0).
