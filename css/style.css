@@ -576,7 +576,7 @@ section { padding: 90px 0; }
 
 .pasta-icon-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
   gap: 16px;
 }
 .pasta-icon-card {
@@ -587,16 +587,16 @@ section { padding: 90px 0; }
   text-align: center;
 }
 .pasta-icon-circle {
-  width: 64px;
-  height: 64px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
-  background: rgba(212,169,79,.12);
-  border: 2px solid rgba(212,169,79,.5);
+  background: var(--cream);
+  border: 2.5px solid rgba(212,169,79,.7);
   overflow: hidden;
   transition: border-color .2s, transform .2s;
 }
 .pasta-icon-card:hover .pasta-icon-circle { border-color: var(--gold); transform: translateY(-3px); }
-.pasta-icon-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pasta-icon-photo { width: 100%; height: 100%; object-fit: contain; display: block; padding: 9%; box-sizing: border-box; }
 .pasta-icon-label { font-size: .78rem; color: var(--cream-2); line-height: 1.2; }
 .byo-price-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .byo-stamp {
