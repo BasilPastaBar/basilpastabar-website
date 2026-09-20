@@ -50,7 +50,7 @@ function renderMenu() {
         const card = document.createElement("div");
         card.className = "dish-card reveal";
         card.innerHTML = `
-          <div class="dish-card-img" style="background-image:url('${item.image}')"></div>
+          <img class="dish-card-img" src="${item.image}" alt="${item.name} at Basil Pasta Bar, Vancouver" width="1000" height="731" loading="lazy">
           <div class="dish-card-body">
             <h3>${item.name} ${iconsFor(item)}</h3>
             <span class="dish-card-price">${priceLabel(item)}</span>
@@ -194,7 +194,7 @@ function renderRestaurantInfo() {
   document.querySelectorAll("[data-field='established']").forEach(elm => elm.textContent = r.established);
 
   const hoursEl = document.getElementById("hours-list");
-  if (hoursEl) {
+  if (hoursEl && !hoursEl.children.length) {
     r.hours.forEach(h => {
       const row = document.createElement("div");
       row.className = "hours-row";
