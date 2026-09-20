@@ -19,12 +19,6 @@ every push).
 You never need to touch the HTML/CSS to change a price, add a dish, or remove
 one. Just ask Claude to make the change in `js/menu-data.js` and push it.
 
-## One thing to double check
-
-"Classic Caesar" under Sides & Salads has had no listed price on the Wix site
-or even the old 2014 print menu — it's set to $13.95 (same as Pasta Salad) as
-a placeholder. Let me know the real price and I'll fix it.
-
 ## Running it locally
 
 It's static files. To preview on your machine:
