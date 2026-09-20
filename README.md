@@ -11,8 +11,10 @@ file: [`js/menu-data.js`](js/menu-data.js). The page reads that file and builds
 the menu automatically.
 
 To change a price, open `js/menu-data.js`, find the item, and edit the `price`
-number. Save, commit, push — the live site updates automatically within a
-minute or two (GitHub Pages redeploys on every push).
+number. Save, then run `node build.js` (it regenerates the /menu/ page,
+structured data and sitemap so Google sees the new price), then commit and
+push. The live site updates within a minute or two (GitHub Pages redeploys on
+every push).
 
 You never need to touch the HTML/CSS to change a price, add a dish, or remove
 one. Just ask Claude to make the change in `js/menu-data.js` and push it.
