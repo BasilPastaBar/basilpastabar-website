@@ -390,8 +390,8 @@ section { padding: 90px 0; }
 .dish-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(20,43,32,.28); }
 .dish-card-img {
   position: absolute; inset: 0;
-  background-size: cover;
-  background-position: center;
+  width: 100%; height: 100%;
+  object-fit: cover;
   transition: transform .5s ease;
 }
 .dish-card:hover .dish-card-img { transform: scale(1.08); }
@@ -749,4 +749,76 @@ section { padding: 90px 0; }
 @media (max-width: 520px) {
   .dish-grid { grid-template-columns: 1fr; }
   .dish-grid-menu { grid-template-columns: 1fr; }
+}
+
+/* ---------- Content pages, About, FAQ (SEO sections) ---------- */
+.section-more { text-align: center; margin: 34px 0 0; font-weight: 600; }
+.section-more a { color: var(--red); text-decoration: underline; text-underline-offset: 3px; }
+.section-more.light a { color: var(--gold); }
+.container.narrow { max-width: 860px; }
+
+.prose { max-width: 860px; margin: 0 auto; padding: 56px 24px 34px; }
+.prose h2 { color: var(--green-dark); font-size: clamp(1.5rem, 3vw, 2rem); margin: 40px 0 12px; }
+.prose p, .prose li { color: #3f473c; font-size: 1.04rem; }
+.prose a:not(.btn):not(.delivery-btn) { color: var(--red); text-decoration: underline; text-underline-offset: 3px; }
+.about-section { background: var(--cream); }
+.about-section .prose { padding-top: 84px; padding-bottom: 60px; }
+.about-section .section-title { margin-bottom: 22px; }
+.about-links { margin-top: 26px; font-weight: 600; }
+
+.faq-section { background: var(--cream-2); }
+.faq details { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 14px; padding: 4px 22px; }
+.faq summary { cursor: pointer; font-weight: 700; color: var(--green-dark); padding: 16px 0; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--red); font-size: 1.4rem; line-height: 1; }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { margin: 0 0 18px; color: #4d564b; }
+
+.location-address { font-style: normal; }
+.location-note { font-size: .92rem; color: #5c6357; margin: 4px 0 0; }
+.location-note a { color: var(--red); text-decoration: underline; }
+.footer-nav { display: flex; gap: 8px 22px; justify-content: center; flex-wrap: wrap; margin: 0 0 22px; }
+.footer-nav a { color: var(--cream-2); text-decoration: underline; text-underline-offset: 3px; font-size: .92rem; }
+.footer-address { font-style: normal; }
+
+.page-hero { background: radial-gradient(circle at 50% 0%, #1f4a35 0%, var(--green-dark) 72%); color: var(--white); text-align: center; padding: 70px 0 58px; }
+.page-hero h1 { font-size: clamp(2rem, 4.8vw, 3.2rem); line-height: 1.12; margin-bottom: 14px; }
+.page-hero .lead { max-width: 700px; margin: 0 auto 26px; color: var(--cream-2); font-size: 1.1rem; }
+.crumbs { font-size: .85rem; color: var(--cream-2); opacity: .85; margin-bottom: 16px; }
+.crumbs a { text-decoration: underline; }
+.cta-band { background: var(--green-dark); color: var(--white); text-align: center; padding: 64px 24px; }
+.cta-band h2 { color: var(--white); font-size: clamp(1.6rem, 3.4vw, 2.2rem); }
+.cta-band p { color: var(--cream-2); margin-bottom: 24px; }
+
+.menu-page { max-width: 1080px; margin: 0 auto; padding: 52px 24px 30px; }
+.menu-cat { margin-bottom: 52px; }
+.menu-cat h2 { color: var(--green-dark); font-size: clamp(1.6rem, 3vw, 2.1rem); border-bottom: 2px solid var(--gold); padding-bottom: 10px; margin-bottom: 20px; }
+.menu-cards { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px 30px; }
+.menu-card { display: flex; gap: 16px; align-items: flex-start; background: var(--white); border-radius: var(--radius); padding: 14px; box-shadow: 0 8px 22px rgba(20,43,32,.10); }
+.menu-card img { width: 118px; height: 118px; border-radius: 12px; object-fit: cover; flex-shrink: 0; }
+.menu-card h3 { margin: 0 0 4px; font-size: 1.08rem; color: var(--green-dark); }
+.menu-card .price { font-family: var(--font-display); font-weight: 800; color: var(--red); }
+.menu-card p { font-size: .92rem; color: #5c6357; margin: 6px 0 0; }
+.menu-tag { display: inline-block; font-family: var(--font-body); font-size: .68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; background: #fbe3df; color: var(--red-dark); border-radius: 999px; padding: 2px 9px; vertical-align: middle; margin-left: 4px; }
+.menu-tag-veg { background: #dff0e2; color: var(--green-mid); }
+.menu-byo { font-size: 1.05rem; }
+.menu-byo a { color: var(--red); text-decoration: underline; }
+
+.price-callout { display: flex; align-items: baseline; justify-content: center; gap: 12px; flex-wrap: wrap; background: var(--white); border: 2px dashed var(--gold); border-radius: var(--radius); padding: 18px 22px; margin-bottom: 8px; text-align: center; }
+.price-callout span { text-transform: uppercase; letter-spacing: .1em; font-size: .8rem; font-weight: 700; color: #7a6a3a; }
+.price-callout strong { font-family: var(--font-display); font-size: 2.2rem; color: var(--red); }
+.price-callout small { color: #5c6357; }
+.byo-page-step { margin-bottom: 8px; }
+.chip-grid { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.chip { display: inline-flex; align-items: center; gap: 8px; background: var(--white); border: 1px solid #e6d9b8; border-radius: 999px; padding: 4px 16px 4px 4px; font-size: .92rem; color: var(--ink); }
+.chip img { width: 34px; height: 34px; border-radius: 50%; background: var(--cream); border: 1.5px solid rgba(212,169,79,.6); padding: 3px; }
+.chip:not(:has(img)) { padding-left: 16px; }
+.step-note { font-size: .9rem; color: #7a6a3a; }
+.hours-block { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 8px 22px; max-width: 460px; }
+.prose .delivery-links { justify-content: flex-start; margin: 18px 0 8px; }
+.prose .delivery-btn { box-shadow: 0 8px 22px rgba(20,43,32,.14); border: 1px solid #ece3cb; }
+
+@media (max-width: 860px) {
+  .menu-cards { grid-template-columns: 1fr; }
+  .page-hero { padding: 52px 0 44px; }
 }
