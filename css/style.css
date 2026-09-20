@@ -147,6 +147,9 @@ section { padding: 90px 0; }
 .brand { display: flex; align-items: center; }
 .brand img {
   height: 78px;
+  width: auto;
+  max-width: none;
+  flex-shrink: 0;
   display: block;
   filter:
     drop-shadow(0 0 2px rgba(255,255,255,.7))
@@ -704,6 +707,7 @@ section { padding: 90px 0; }
 }
 .footer-logo {
   height: 64px;
+  width: auto;
   margin: 0 auto 20px;
   filter:
     drop-shadow(0 0 2px rgba(255,255,255,.6))
