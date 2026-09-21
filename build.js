@@ -120,6 +120,17 @@ ${FAQS.map(([q, a]) => `      <details><summary>${esc(q)}</summary><p>${esc(a)}<
 
 const hoursHtml = () => R.hours.map((h) => `<div class="hours-row"><span>${esc(h.days)}</span><span>${esc(h.time)}</span></div>`).join('');
 
+// ---------- Google Analytics tag (pasted exactly as Google provides it) ----------
+const GTAG = `<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4ZMQPRNVQ9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4ZMQPRNVQ9');
+</script>`;
+
 // ---------- <head> ----------
 const head = ({ title, desc, path: p, ld }) => `<title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
@@ -148,7 +159,8 @@ const head = ({ title, desc, path: p, ld }) => `<title>${esc(title)}</title>
 <link rel="icon" href="/images/favicon-48.png" type="image/png" sizes="48x48">
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-${jsonLd({ '@context': 'https://schema.org', '@graph': ld })}`;
+${jsonLd({ '@context': 'https://schema.org', '@graph': ld })}
+${GTAG}`;
 
 const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -184,6 +196,7 @@ const footer = () => `<footer class="site-footer">
       <a href="${R.social.instagram}" target="_blank" rel="noopener" aria-label="Basil Pasta Bar on Instagram">◎</a>
     </div>
     <div class="footer-fine">&copy; ${new Date().getFullYear()} Basil Pasta Bar. All rights reserved.</div>
+    <div class="footer-fine">We count visits with Google Analytics (no names or personal details).</div>
   </div>
 </footer>`;
 
@@ -204,6 +217,7 @@ ${body}
 ${footer()}
 <script src="/js/menu-data.js"></script>
 <script src="/js/main.js"></script>
+<script src="/js/analytics.js" defer></script>
 </body>
 </html>
 `;
@@ -349,8 +363,9 @@ ${ctaBand('Not sure what to order?', 'Browse every pasta, salad and dessert with
 const notFound = () => `<!DOCTYPE html>
 <html lang="en-CA"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Page not found | Basil Pasta Bar</title><meta name="robots" content="noindex,follow">
-<link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/css/style.css"></head>
-<body>${header()}<main><section class="page-hero"><div class="container"><h1>Page not found</h1><p class="lead">Sorry, we couldn’t find that page. Let’s get you to some pasta.</p><a class="btn btn-primary" href="/">Back to the homepage</a> <a class="btn btn-secondary" href="/menu/">See the menu</a></div></section></main>${footer()}<script src="/js/menu-data.js"></script><script src="/js/main.js"></script></body></html>
+<link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/css/style.css">
+${GTAG}</head>
+<body>${header()}<main><section class="page-hero"><div class="container"><h1>Page not found</h1><p class="lead">Sorry, we couldn’t find that page. Let’s get you to some pasta.</p><a class="btn btn-primary" href="/">Back to the homepage</a> <a class="btn btn-secondary" href="/menu/">See the menu</a></div></section></main>${footer()}<script src="/js/menu-data.js"></script><script src="/js/main.js"></script><script src="/js/analytics.js" defer></script></body></html>
 `;
 
 // ---------- home page (in-place marker injection) ----------
